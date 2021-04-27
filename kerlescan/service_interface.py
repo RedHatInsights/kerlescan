@@ -35,6 +35,12 @@ def _validate_service_response(response, logger):
         )
         raise RBACDenied(response.text)
 
+    if response.status_code == requests.codes.unauthorized:
+        logger.info(
+            "%s error received from service: %s" % (response.status_code, response.text)
+        )
+        raise Unauthorized(response.text)
+
     if response.status_code != requests.codes.ok:
         logger.warn(
             "%s error received from service: %s" % (response.status_code, response.text)

@@ -46,6 +46,16 @@ class RBACDenied(Exception):
         self.message = message
 
 
+class Unauthorized(Exception):
+    def __init__(self, message):
+        """
+        Raise this exception if the inventory service reports that the header
+        is unauthorized to access the service
+        """
+        super(Unauthorized, self).__init__()
+        self.message = message
+
+
 class UnparsableNEVRAError(RuntimeError):
     def __init__(self, message):
         """
